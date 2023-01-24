@@ -8,7 +8,7 @@
                         <div class="row d-flex justify-content-between align-items-center">
                             <div class="header-info-left">
                                 <ul>
-                                    <li class="title"><span class="flaticon-energy"></span> Manggu Mediaa</li>
+                                    <li class="title"><span class="flaticon-energy"></span> Manggu Mediaaaaaa</li>
                                 </ul>
                             </div>
                             <div class="header-info-right">
