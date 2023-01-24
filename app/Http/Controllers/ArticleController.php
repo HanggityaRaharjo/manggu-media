@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Article;
 use App\Models\Kategori;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Auth;
 
 class ArticleController extends Controller
 {
@@ -40,7 +41,7 @@ class ArticleController extends Controller
             "slug" => $slug,
             "kategori_id" => $request->kategori_id,
             "body" => $request->body,
-            "penulis" => $request->penulis,
+            "penulis" => Auth::user()->name,
         ]);
         return redirect('/create-article');
     }

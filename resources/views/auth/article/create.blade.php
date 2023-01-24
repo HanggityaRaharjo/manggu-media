@@ -1,98 +1,111 @@
-@extends('layouts.auth')
+@extends('layouts.dashboard')
+@section('body')
+    {{-- Content --}}
+    <div class="page-wrapper">
+        <!-- ============================================================== -->
+        <!-- Container fluid  -->
+        <!-- ============================================================== -->
+        <div class="container-fluid">
+            <div style="border: 1px solid red">
+                <h1 class="text-center">Buat Artikel</h1>
+                <div class="p-5">
+                    <form action="/create-article" method="POST" enctype="multipart/form-data">
+                        @csrf
 
-@section('container')
-    <main>
-        <!-- About US Start -->
-        <div class="about-area2 gray-bg pt-60 pb-60">
-            <h1 class="text-center">Buat Artikel</h1>
-            <div class="p-5">
-                <form action="/create-article" method="POST" enctype="multipart/form-data">
-                    @csrf
-
-                    {{-- Gambar --}}
-                    <div class="input-group mb-3">
-                        <div class="custom-file">
-                            <input type="file" class="custom-file-input" onchange="previewImage()" name="gambar"
-                                id="image">
-                            <label class="custom-file-label" for="inputGroupFile02">Masukan Gambar Artikel</label>
+                        {{-- Gambar --}}
+                        <div class="input-group mb-3 d-flex align-items-center" style="border: 1px solid red">
+                            <div class="input-group-append">
+                                <span class="input-group-text" id="">Upload</span>
+                            </div>
+                            <div class="custom-file d-flex justify-content-center"
+                                style="border: 1px solid green;position: relative;">
+                                <span style="position: absolute;top:50%">Klik</span>
+                                <input type="file" class="custom-file-input" onchange="previewImage()" name="gambar"
+                                    id="image">
+                            </div>
                         </div>
-                        <div class="input-group-append">
-                            <span class="input-group-text" id="">Upload</span>
+                        {{-- End Gambar --}}
+
+                        {{-- Hasil Gambar --}}
+                        <img class="img-fluid my-3 col-sm-4" id="img-preview">
+                        {{-- End Hasil Gambar --}}
+
+                        {{-- Wrapper Judul & Kategori --}}
+                        <div class="d-flex align-items-center" style="gap:20px">
+
+                            {{-- Judul --}}
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text" id="inputGroup-sizing-default">Judul</span>
+                                </div>
+                                <input type="text" class="form-control" aria-label="Default"
+                                    aria-describedby="inputGroup-sizing-default" type="text" placeholder="Masukan Judul"
+                                    name="judul">
+                            </div>
+                            {{-- End Judul --}}
+
+                            {{-- Kategori --}}
+                            <div class="input-group mb-3" style="width: 30%">
+                                <div class="input-group-prepend">
+                                    <label class="input-group-text" for="inputGroupSelect02">Kategori</label>
+                                </div>
+                                <select class="custom-select py-1" name="kategori_id" id="inputGroupSelect02">
+                                    <option selected>Choose...</option>
+                                    @foreach ($kategoris as $kategori)
+                                        <option value="{{ $kategori->id }}">
+                                            {{ $kategori->nama_kategori }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            {{-- End Kategori --}}
+
                         </div>
-                    </div>
-                    {{-- End Gambar --}}
+                        {{-- End Wrapper Judul & Kategori --}}
 
-                    {{-- Hasil Gambar --}}
-                    <img class="img-fluid my-3 col-sm-4" id="img-preview">
-                    {{-- End Hasil Gambar --}}
-
-                    {{-- Wrapper Judul & Kategori --}}
-                    <div class="d-flex align-items-center" style="gap:20px">
-
-                        {{-- Judul --}}
-                        <div class="input-group mb-3">
+                        {{-- Konten --}}
+                        <div>
                             <div class="input-group-prepend">
-                                <span class="input-group-text" id="inputGroup-sizing-default">Judul</span>
+                                <span class="input-group-text w-100" id="inputGroup-sizing-default">Konten</span>
+                            </div>
+                            <textarea name="body" id="body" cols="30" rows="10" style="height: 500px"></textarea>
+                        </div>
+                        {{-- End Konten --}}
+
+                        {{-- Penulis --}}
+                        {{-- <div class="input-group my-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text" id="inputGroup-sizing-default">Penulis</span>
                             </div>
                             <input type="text" class="form-control" aria-label="Default"
                                 aria-describedby="inputGroup-sizing-default" type="text" placeholder="Masukan Judul"
-                                name="judul">
+                                name="penulis">
+                        </div> --}}
+                        {{-- End Penulis --}}
+
+
+
+                        <div class="d-flex justify-content-center">
+                            <button type="submit" class="btn">Submit</button>
                         </div>
-                        {{-- End Judul --}}
-
-                        {{-- Kategori --}}
-                        <div class="input-group mb-3" style="width: 30%">
-                            <div class="input-group-prepend">
-                                <label class="input-group-text" for="inputGroupSelect02">Kategori</label>
-                            </div>
-                            <select class="custom-select py-1" name="kategori_id" id="inputGroupSelect02">
-                                <option selected>Choose...</option>
-                                @foreach ($kategoris as $kategori)
-                                    <option value="{{ $kategori->id }}">
-                                        {{ $kategori->nama_kategori }}</option>
-                                @endforeach
-                            </select>
-                        </div>
-                        {{-- End Kategori --}}
-
-                    </div>
-                    {{-- End Wrapper Judul & Kategori --}}
-
-                    {{-- Konten --}}
-                    <div>
-                        <div class="input-group-prepend">
-                            <span class="input-group-text w-100" id="inputGroup-sizing-default">Konten</span>
-                        </div>
-                        <textarea name="body" id="body" cols="30" rows="10" style="height: 500px"></textarea>
-                    </div>
-                    {{-- End Konten --}}
-
-                    {{-- Penulis --}}
-                    <div class="input-group my-3">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text" id="inputGroup-sizing-default">Penulis</span>
-                        </div>
-                        <input type="text" class="form-control" aria-label="Default"
-                            aria-describedby="inputGroup-sizing-default" type="text" placeholder="Masukan Judul"
-                            name="penulis">
-                    </div>
-                    {{-- End Penulis --}}
+                    </form>
 
 
 
-                    <div class="d-flex justify-content-center">
-                        <button type="submit" class="btn">Submit</button>
-                    </div>
-                </form>
-
-
-
+                </div>
             </div>
-
         </div>
-        <!-- About US End -->
-    </main>
-
+        <!-- ============================================================== -->
+        <!-- End Container fluid  -->
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- footer -->
+        <!-- ============================================================== -->
+        <footer class="footer"> © 2018 Adminwrap by wrappixel.com </footer>
+        <!-- ============================================================== -->
+        <!-- End footer -->
+        <!-- ============================================================== -->
+    </div>
+    {{-- End Content --}}
     <!-- CK EDITOR -->
     <script src="ckeditor5/ckeditor.js"></script>
     <script>

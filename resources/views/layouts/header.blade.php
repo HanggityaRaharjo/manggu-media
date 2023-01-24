@@ -8,7 +8,7 @@
                         <div class="row d-flex justify-content-between align-items-center">
                             <div class="header-info-left">
                                 <ul>
-                                    <li class="title"><span class="flaticon-energy"></span> Manggu Mediaaaaaa</li>
+                                    <li class="title"><span class="flaticon-energy"></span> Manggu Media</li>
                                 </ul>
                             </div>
                             <div class="header-info-right">
@@ -70,17 +70,37 @@
                         <div class="col-xl-4 col-lg-4 col-md-4">
                             <div class="header-right f-right d-none d-lg-block">
                                 <!-- Header social -->
-                                <ul class="header-social">
-                                    <li><a href="#"><i class="fab fa-facebook-f"></i></a>
-                                    </li>
-                                    <li><a href="#"><i class="fab fa-twitter"></i></a></li>
-                                    <li><a href="#"><i class="fab fa-instagram"></i></a></li>
-                                    <li> <a href="#"><i class="fab fa-youtube"></i></a></li>
-                                </ul>
+                                @auth
+                                    <ul class="header-social">
+                                        <li style="font-weight:bold;color:white">{{ Auth::user()->name }}</li>
+                                    </ul>
+                                @else
+                                    <ul class="header-social">
+                                        <li><a href="#"><i class="fab fa-facebook-f"></i></a>
+                                        </li>
+                                        <li><a href="#"><i class="fab fa-twitter"></i></a></li>
+                                        <li><a href="#"><i class="fab fa-instagram"></i></a></li>
+                                        <li> <a href="#"><i class="fab fa-youtube"></i></a></li>
+                                    </ul>
+                                @endauth
                                 <!-- Search Nav -->
-                                <div class="nav-search search-switch">
-                                    <i class="fa fa-search"></i>
-                                </div>
+                                <!-- Header social -->
+                                @auth
+                                    <div
+                                        style="display: inline-block;
+                                    position: relative;">
+                                        <form action="{{ url('logout') }}" method="POST">
+                                            @csrf
+                                            <button type="submit" class="btn"
+                                                style="font-weight: bold;color:white">Logout</button>
+                                        </form>
+                                    </div>
+                                @else
+                                    <div class="nav-search search-switch">
+                                        <i class="fa fa-search"></i>
+                                    </div>
+                                @endauth
+
                             </div>
                         </div>
                         <!-- Mobile Menu -->
