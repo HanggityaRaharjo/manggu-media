@@ -38,3 +38,6 @@ Route::post('/kategori', [KategoriController::class, 'store']);
 // Admin
 Route::get('/dashboard/admin/articles', [AdminController::class, 'index']);
 Route::post('/dashboard/admin/articles', [AdminController::class, 'store']);
+// Podcast
+Route::get('/dashboard/admin/podcast', [PodcastController::class, 'index']);
+Route::post('/dashboard/admin/podcast', [PodcastController::class, 'store']);
