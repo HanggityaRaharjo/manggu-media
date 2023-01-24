@@ -3,7 +3,7 @@
 @section('content')
     <main>
         <div>
-            <form action="{{ url('register') }}" method="post">
+            <form action="{{ url('login') }}" method="post">
                 @csrf
                 <label for="">Username</label>
                 <input type="text" name="name">

@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\GuestController;
+use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\RegisterController;
@@ -25,6 +26,7 @@ Route::get('/by-category', [GuestController::class, 'by_category']);
 Route::get('/by-category/{id}', [GuestController::class, 'show_by_category']);
 // -------------------------------------  -------------------------------------
 Route::get('/register', [RegisterController::class, 'create']);
+Route::get('/login', [LoginController::class, 'index']);
 Route::post('/register', [RegisterController::class, 'store']);
 
 
