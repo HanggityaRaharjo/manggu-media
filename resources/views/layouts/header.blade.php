@@ -32,7 +32,10 @@
                         </div>
                         <div class="col-xl-9 col-lg-9 col-md-9">
                             <div class="header-banner f-right ">
-                                <img src="{{ asset('./assets/img/gallery/header_card.png') }}" alt="">
+
+                                @if (!empty($iklan))
+                                    <img src="{{ asset('./storage/adds-image/' . $iklan->iklan_1) }}" alt="" />
+                                @endif
                             </div>
                         </div>
                     </div>
@@ -58,9 +61,8 @@
                                         <li><a href="#">Berita terupdate</a></li>
                                         <li><a href="#">Podcast</a>
                                             <ul class="submenu">
-                                                <li><a href="#">Blog</a></li>
-                                                <li><a href="#">Blog Details</a></li>
-                                                <li><a href="#">Element</a></li>
+                                                <li><a disabled>Cooming Soon</a></li>
+
                                             </ul>
                                         </li>
                                     </ul>

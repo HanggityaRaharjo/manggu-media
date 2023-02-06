@@ -8,16 +8,23 @@
                 <div class="row">
                     <div class="col-lg-8">
                         <!-- Trending Tittle -->
-                        <div class="about-right mb-90">
+                        <div class="about-right">
                             <div class="about-img">
+
                                 <img src="{{ asset('storage/article-images/' . $data->gambar) }}" alt="{{ $data->judul }}">
                             </div>
-                            <div class="heading-news mb-30 pt-30">
+                            <div class="heading-news mb-30 pt-30" style="background: white;padding:20px;border-radius:10px;">
                                 <h3>{{ $data->judul }}</h3>
                             </div>
+                            <style>
+                                #content-article a {
+                                    color: blue;
+                                }
+                            </style>
                             {{-- Body --}}
-                            <div style="background: white;padding:10px;border-raius:10px">
-                                {!! $data->body !!}
+                            <div id="content-article"
+                                style="background: white;padding:20px;border-radius:10px;text-align:justify">
+                                <strong>{{ $data->penulis }}</strong>{!! $data->body !!}
                             </div>
                             {{-- End Body --}}
                             <div class="social-share pt-30">
@@ -49,37 +56,17 @@
                             </div>
                         </div>
                         <!-- From -->
+                        {{-- Komentar --}}
                         <div class="row">
                             <div class="col-lg-8">
-                                <form class="form-contact contact_form mb-80" action="contact_process.php" method="post"
-                                    id="contactForm" novalidate="novalidate">
+                                <form class="form-contact contact_form" action="{{ url('comments/' . $data->id) }}"
+                                    method="post">
+                                    @csrf
                                     <div class="row">
                                         <div class="col-12">
                                             <div class="form-group">
-                                                <textarea class="form-control w-100 error" name="message" id="message" cols="30" rows="9"
+                                                <textarea class="form-control w-100 error" name="message" id="message" cols="30" rows="5"
                                                     onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter Message'" placeholder="Enter Message"></textarea>
-                                            </div>
-                                        </div>
-                                        <div class="col-sm-6">
-                                            <div class="form-group">
-                                                <input class="form-control error" name="name" id="name"
-                                                    type="text" onfocus="this.placeholder = ''"
-                                                    onblur="this.placeholder = 'Enter your name'"
-                                                    placeholder="Enter your name">
-                                            </div>
-                                        </div>
-                                        <div class="col-sm-6">
-                                            <div class="form-group">
-                                                <input class="form-control error" name="email" id="email"
-                                                    type="email" onfocus="this.placeholder = ''"
-                                                    onblur="this.placeholder = 'Enter email address'" placeholder="Email">
-                                            </div>
-                                        </div>
-                                        <div class="col-12">
-                                            <div class="form-group">
-                                                <input class="form-control error" name="subject" id="subject"
-                                                    type="text" onfocus="this.placeholder = ''"
-                                                    onblur="this.placeholder = 'Enter Subject'" placeholder="Enter Subject">
                                             </div>
                                         </div>
                                     </div>
@@ -90,6 +77,24 @@
                                 </form>
                             </div>
                         </div>
+                        {{-- End Komentar --}}
+                        <h4>Komentar</h4>
+                        {{-- Kolom Komentar --}}
+                        @if (count($data->comments) !== 0)
+                            @foreach ($data->comments as $comment)
+                                <div class="card mb-2" style="padding:10px 10px">
+                                    <p>{{ $comment->komentar }}</p>
+                                </div>
+                            @endforeach
+                        @else
+                            <div class="card mb-2 text-center" style="padding:10px 10px">
+                                <p>Belum ada komentar</p>
+                            </div>
+                        @endif
+
+                        {{-- End Kolom Komentar --}}
+
+
                     </div>
                     <div class="col-lg-4">
                         <!-- Flow Socail -->

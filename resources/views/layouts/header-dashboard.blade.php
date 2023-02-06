@@ -33,6 +33,7 @@
                                 class="fa fa-times"></i></a>
                     </form>
                 </li>
+
             </ul>
             <!-- ============================================================== -->
             <!-- User profile and search -->
@@ -43,10 +44,17 @@
                 <!-- ============================================================== -->
                 <li class="nav-item dropdown u-pro">
                     <a class="nav-link dropdown-toggle waves-effect waves-dark profile-pic" href=""
-                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img
-                            src="{{ asset('admin') }}/assets/images/users/1.jpg" alt="user" class="" />
-                        <span class="hidden-md-down">{{ Auth::user()->name }} &nbsp;</span> </a>
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        @if (!empty(Auth::user()->profile->photo))
+                            <img src="{{ asset('./storage/user_profile/' . Auth::user()->profile->photo) }}"
+                                alt="{{ Auth::user()->name }}" class="" />
+                        @else
+                            <img src="{{ asset('admin') }}/assets/images/users/1.jpg" alt="user" class="" />
+                        @endif
+                        <span class="hidden-md-down">{{ Auth::user()->name }} &nbsp;</span>
+                    </a>
                 </li>
+
             </ul>
         </div>
     </nav>

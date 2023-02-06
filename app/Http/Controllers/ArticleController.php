@@ -36,6 +36,8 @@ class ArticleController extends Controller
 
         Article::create([
             "gambar" => $filename,
+            "user_id" => Auth::user()->id,
+            "status" => 'onproccess',
             "tanggal" => date("Y-m-d"),
             "judul" => $request->judul,
             "slug" => $slug,

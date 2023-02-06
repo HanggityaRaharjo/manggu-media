@@ -8,18 +8,32 @@
                         <div class="single-footer-caption mb-50">
                             <div class="single-footer-caption mb-30">
                                 <!-- logo -->
-                                <div class="footer-logo">
-                                    <a href="{{ url('/') }}">
-                                        <img src="{{ asset('./assets/img/logo/logo2_footer.png') }}"
-                                            alt="manggu-media-logo">
-                                    </a>
+                                <div class="footer-tittle">
+                                    <h4>Manggu Media</h4>
+                                    <p style="color: white">
+                                        Subscribe ke email untuk mendapatkan informasi dan penawaran terbaru
+                                    </p>
                                 </div>
                                 <div class="footer-tittle">
                                     <div class="footer-pera">
-                                        <p class="info1">Lorem ipsum dolor sit amet, nsectetur adipiscing elit,
-                                            sed do eiusmod tempor incididunt ut labore.</p>
-                                        <p class="info2">198 West 21th Street, Suite 721 New York,NY 10010</p>
-                                        <p class="info2">Phone: +95 (0) 123 456 789 Cell: +95 (0) 123 456 789</p>
+                                        @if (Session::get('success'))
+                                            <div class="alert alert-success text-center" role="alert">
+                                                Sukses terkirim
+                                            </div>
+                                        @endif
+                                        <div class="info1 m-0">
+                                            <div style="margin:0;padding:0">
+                                                <form action="{{ url('subscribe') }}" method="post">
+                                                    @csrf
+                                                    <input type="email" name="email" class="form-control"
+                                                        placeholder="example@gmail.com" style="margin: 0;width:100%"
+                                                        required>
+                                                    <button class="btn" type="submit"
+                                                        style="padding:10px 10px;margin:0;transform:translateY(-3px)">Subscribe</button>
+                                                </form>
+                                            </div>
+                                        </div>
+
                                     </div>
                                 </div>
                             </div>
@@ -28,48 +42,29 @@
                     <div class="col-xl-4 col-lg-4 col-md-5 col-sm-7">
                         <div class="single-footer-caption mb-50">
                             <div class="footer-tittle">
-                                <h4>Popular post</h4>
+                                <h4>Kontak</h4>
                             </div>
                             <!-- Popular post -->
                             <div class="whats-right-single mb-20">
-                                <div class="whats-right-img">
-                                    <img src="{{ asset('./assets/img/gallery/footer_post1.png') }}" alt="footer-post">
-                                </div>
-                                <div class="whats-right-cap">
-                                    <h4>
-                                        <a href="{{ url('/') }}">Scarlett’s disappointment at latest accolade</a>
-                                    </h4>
-                                    <p>Jhon | 2 hours ago</p>
-                                </div>
+                                <p style="color: white">0822-1413-6659</p>
                             </div>
-                            <!-- Popular post -->
                             <div class="whats-right-single mb-20">
-                                <div class="whats-right-img">
-                                    <img src="{{ asset('./assets/img/gallery/footer_post2.png') }}" alt="">
-                                </div>
-                                <div class="whats-right-cap">
-                                    <h4><a href="#">Scarlett’s disappointment at latest accolade</a>
-                                    </h4>
-                                    <p>Jhon | 2 hours ago</p>
-                                </div>
+                                <p style="color: white">manggumedia@gmail.com</p>
                             </div>
-                            <!-- Popular post -->
                             <div class="whats-right-single mb-20">
-                                <div class="whats-right-img">
-                                    <img src="{{ asset('./assets/img/gallery/footer_post3.png') }}" alt="">
-                                </div>
-                                <div class="whats-right-cap">
-                                    <h4><a href="#">Scarlett’s disappointment at latest accolade</a>
-                                    </h4>
-                                    <p>Jhon | 2 hours ago</p>
-                                </div>
+                                <p style="color: white">Jl. Kav. Damri II No.9, Cipadung Kidul, Kec. Panyileukan, Kota
+                                    Bandung, Jawa Barat
+                                    40614</p>
                             </div>
+
                         </div>
                     </div>
                     <div class="col-xl-3 col-lg-3 col-md-5 col-sm-7">
                         <div class="single-footer-caption mb-50">
                             <div class="banner">
-                                <img src="{{ asset('./assets/img/gallery/body_card4.png') }}" alt="">
+                                @if (!empty($iklan))
+                                    <img src="{{ asset('./storage/adds-image/' . $iklan->iklan_6) }}" alt="" />
+                                @endif
                             </div>
                         </div>
                     </div>
@@ -83,16 +78,7 @@
                     <div class="row d-flex align-items-center">
                         <div class="col-xl-12 ">
                             <div class="footer-copy-right text-center">
-                                <p>
-                                    <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-                                    Copyright &copy;
-                                    <script>
-                                        document.write(new Date().getFullYear());
-                                    </script> All rights reserved | This template is made with <i
-                                        class="fa fa-heart" aria-hidden="true"></i> by <a href="https://colorlib.com"
-                                        target="_blank">Colorlib</a>
-                                    <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-                                </p>
+                                <p>Manggu Media 2023</p>
                             </div>
                         </div>
                     </div>
